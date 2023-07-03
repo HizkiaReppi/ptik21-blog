@@ -30,8 +30,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('jefren123'),
             'role' => 'admin'
         ]);
-        User::factory(8)->create();
-        Post::factory(30)->create();
+        User::factory()->create([
+            'name' => 'Hizkia Jefren',
+            'username' => 'hjefren',
+            'email' => 'hjefren@gmail.com',
+            'password' => bcrypt('hjefren123'),
+            'role' => 'user'
+        ]);
+        Post::factory(10)->create();
         Category::factory()->create([
             'name' => 'Programming',
             'slug' => 'programming'

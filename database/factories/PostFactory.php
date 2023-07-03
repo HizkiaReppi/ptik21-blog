@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,12 +18,12 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->sentence(mt_rand(2, 8)),
-            'user_id' => mt_rand(1,5),
-            'category_id' => mt_rand(1,5),
+            'title' => fake()->sentence(mt_rand(4, 8)),
+            'user_id' => mt_rand(1,3),
+            'category_id' => mt_rand(1,3),
             'slug' => fake()->slug(),
-            'published_at' => fake()->date(),
-            'content' => collect(fake()->paragraphs(mt_rand(5,10)))
+            'published_at' => Carbon::now('Asia/Jakarta'),
+            'content' => collect(fake()->paragraphs(mt_rand(20,30)))
                         ->map(fn($p) => "<p>$p</p>")
                         ->implode('')
         ];

@@ -34,7 +34,7 @@ class PostController extends Controller
         return view('frontend.posts.show', [
             'title' => $post->title,
             'post' => $post,
-            'similarPosts' => Post::where('category_id', $post->category_id)->latest()->limit(5)->get()
+            'similarPosts' => Post::where('category_id', $post->category_id)->where('id', '!=', $post->id)->latest()->take(5)->get()
         ]);
     }
 }

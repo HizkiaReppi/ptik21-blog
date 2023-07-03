@@ -54,4 +54,13 @@ class User extends Authenticatable
     {
         return 'username';
     }
+
+    /**
+     * Determine if the user is authenticated.
+     *
+     */
+    public function isAuthenticated(): Bool
+    {
+        return auth()->check();
+    }
 }
