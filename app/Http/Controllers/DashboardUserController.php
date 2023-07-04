@@ -16,18 +16,11 @@ use Illuminate\Validation\Rules;
 class DashboardUserController extends Controller
 {
     /**
-     * Authorize of the resource.
-     */
-    public function __construct()
-    {
-        $this->authorizeResource(User::class, 'users');
-    }
-
-    /**
      * Display a listing of the resource.
      */
     public function index(): View
     {
+        $this->authorize('viewAny', User::class);
         $this->confirmDeleteSweetalert();
         return view('dashboard.users.index', [
             'title' => 'User Management',
@@ -41,6 +34,7 @@ class DashboardUserController extends Controller
      */
     public function create(): View
     {
+        $this->authorize('create', User::class);
         return view('dashboard.users.create', [
             'title' => 'Add New User',
         ]);
@@ -51,6 +45,7 @@ class DashboardUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $this->authorize('create', User::class);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
@@ -75,6 +70,7 @@ class DashboardUserController extends Controller
      */
     public function show(User $user): View
     {
+        $this->authorize('view', User::class);
         $this->confirmDeleteSweetalert();
         return view('dashboard.users.show', [
             'title' => 'User ' . $user->name,
@@ -87,6 +83,7 @@ class DashboardUserController extends Controller
      */
     public function edit(User $user): View
     {
+        $this->authorize('update', User::class);
         $roles = [
             [
                 'value' => 'user',
@@ -114,6 +111,7 @@ class DashboardUserController extends Controller
      */
     public function update(UserUpdateRequest $request, User $user): RedirectResponse
     {
+        $this->authorize('update', User::class);
         $validatedData = $request->validated();
 
         if ($validatedData['role'] === 'super-admin') {
@@ -135,6 +133,7 @@ class DashboardUserController extends Controller
      */
     public function destroy(User $user): RedirectResponse
     {
+        $this->authorize('delete', User::class);
         User::destroy($user->id);
 
         return Redirect::route('dashboard.users.index')->with('toast_success', 'User Deleted Successfully!');

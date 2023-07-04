@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardCategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\PostController;
@@ -22,9 +23,7 @@ Route::get('/', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/posts/check-slug', [DashboardPostController::class, 'checkSlug'])->name('dashboard.posts.checkSlug');
     Route::resource('/dashboard/posts', DashboardPostController::class)->names('dashboard.posts');
     Route::get('/dashboard/categories/check-slug', [DashboardCategoryController::class, 'checkSlug'])->name('dashboard.categories.checkSlug');

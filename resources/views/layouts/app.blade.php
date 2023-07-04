@@ -19,7 +19,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
@@ -32,10 +32,19 @@
         @endif
 
         <!-- Page Content -->
-        <main>
+        <main class="flex-grow">
             {{ $slot }}
         </main>
+
+        <footer class="w-full bg-gray-100">
+            <div
+                class="flex justify-between items-center max-w-7xl mx-auto py-6 px-4 font-semibold text-xs sm:px-6 lg:px-8 lg:text-sm">
+                <p>Copyright &copy; {{ date('Y') }} - PTIK21 Blog</p>
+                <p>Create By Hizkia Reppi</p>
+            </div>
+        </footer>
     </div>
+
     @include('sweetalert::alert')
 </body>
 
