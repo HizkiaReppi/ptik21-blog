@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -13,7 +14,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
 class DashboardPostController extends Controller
@@ -47,7 +47,7 @@ class DashboardPostController extends Controller
     {
         return view('dashboard.posts.create', [
             'title' => 'Add New Post',
-            'categories' => Category::all(),
+            'categories' => Category::all()->orderBy('name', 'ASC'),
         ]);
     }
 
@@ -58,7 +58,7 @@ class DashboardPostController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['published_at'] = now();
+        $validatedData['published_at'] = Carbon::now('Asia/Jakarta');
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -100,7 +100,7 @@ class DashboardPostController extends Controller
         return view('dashboard.posts.edit', [
             'title' => 'Edit Post',
             'post' => $post,
-            'categories' => Category::all(),
+            'categories' => Category::all()->orderBy('name', 'ASC'),
         ]);
     }
 

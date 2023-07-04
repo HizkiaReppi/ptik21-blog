@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
-use Illuminate\Support\Facades\Auth;
 
 class PostPolicy
 {
@@ -14,7 +13,7 @@ class PostPolicy
      */
     public function viewAny(User $user): bool
     {
-        return Auth::check();
+        return $user->isAuthenticated();
     }
 
     /**
@@ -26,7 +25,7 @@ class PostPolicy
             return true;
         }
 
-        if ($user->role =='super-admin') {
+        if ($user->role == 'super-admin' || $user->role == 'admin') {
             return true;
         }
 
@@ -36,25 +35,31 @@ class PostPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user): Response
     {
-        return $user->hasVerifiedEmail();
+        return $user->hasVerifiedEmail()
+            ? Response::allow()
+            : Response::deny('You must verify email to create post.');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Post $post): bool
+    public function update(User $user, Post $post): Response
     {
-        return ($user->hasVerifiedEmail() && $user->role === 'super-admin') || $user->id === $post->user_id;
+        return ($user->hasVerifiedEmail() && $user->role === 'super-admin') || $user->id === $post->user_id
+            ? Response::allow()
+            : Response::deny('You do not own this post.');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Post $post): bool
+    public function delete(User $user, Post $post): Response
     {
-        return ($user->hasVerifiedEmail() && $user->role === 'super-admin') || $user->id === $post->user_id;
+        return ($user->hasVerifiedEmail() && $user->role === 'super-admin') || $user->id === $post->user_id
+            ? Response::allow()
+            : Response::deny('You do not own this post.');
     }
 
     /**

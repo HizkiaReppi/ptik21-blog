@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +26,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
     Route::get('/dashboard/posts/check-slug', [DashboardPostController::class, 'checkSlug'])->name('dashboard.posts.checkSlug');
     Route::resource('/dashboard/posts', DashboardPostController::class)->names('dashboard.posts');
+    Route::get('/dashboard/categories/check-slug', [DashboardCategoryController::class, 'checkSlug'])->name('dashboard.categories.checkSlug');
+    Route::resource('/dashboard/categories', DashboardCategoryController::class)->names('dashboard.categories');
 });
 
 Route::middleware('auth')->group(function () {
@@ -33,4 +36,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

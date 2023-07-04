@@ -2,7 +2,13 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\User;
+use App\Policies\CategoryPolicy;
+use App\Policies\PostPolicy;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -13,7 +19,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        Post::class => PostPolicy::class,
+        Category::class => CategoryPolicy::class,
     ];
 
     /**
@@ -21,6 +28,16 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('super-admin', function (User $user) {
+            return $user->role === 'super-admin'
+                ? Response::allow()
+                : Response::deny('You must be an super administrator.');
+        });
+
+        Gate::define('admin', function (User $user) {
+            return $user->role === 'admin'
+                ? Response::allow()
+                : Response::deny('You must be an administrator.');
+        });
     }
 }

@@ -9,4 +9,11 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+
+    public function confirmDeleteSweetalert(): Void
+    {
+        $title = 'Are you sure?';
+        $text = "You won't be able to revert this!";
+        confirmDelete($title, $text);
+    }
 }

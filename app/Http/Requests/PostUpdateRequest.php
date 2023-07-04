@@ -31,7 +31,7 @@ class PostUpdateRequest extends FormRequest
         ];
 
         if ($this->slug !== $this->post->slug) {
-            $rules['slug'] = 'required|unique:posts';
+            $rules['slug'] = ['required', 'string', 'max:255', Rule::unique(Post::class)];
         }
 
         return $rules;

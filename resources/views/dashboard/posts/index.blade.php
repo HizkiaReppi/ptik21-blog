@@ -38,7 +38,7 @@
                 <td class="px-6 py-4 text-center">
                   {{ $post->category->name }}
                 </td>
-                <td class="px-6 py-4 text-center">{{ $post->published_at }}</td>
+                <td class="px-6 py-4 text-center">{{ Carbon\Carbon::parse($post->published_at)->format('H:i, d F Y') }}</td>
                 <td class="flex items-center justify-center px-6 py-4 space-x-3">
                   <a
                     href="{{ route('dashboard.posts.show', $post->slug) }}"
