@@ -19,13 +19,13 @@ class PostFactory extends Factory
     {
         return [
             'title' => fake()->sentence(mt_rand(4, 8)),
-            'user_id' => mt_rand(1,3),
-            'category_id' => mt_rand(1,3),
+            'user_id' => mt_rand(1, 10),
+            'category_id' => mt_rand(1, 5),
             'slug' => fake()->slug(),
             'published_at' => Carbon::now('Asia/Jakarta'),
-            'content' => collect(fake()->paragraphs(mt_rand(20,30)))
-                        ->map(fn($p) => "<p>$p</p>")
-                        ->implode('')
+            'content' => collect(fake()->paragraphs(mt_rand(20, 30)))
+                ->map(fn ($p) => "<p>$p</p>")
+                ->implode('')
         ];
     }
 }

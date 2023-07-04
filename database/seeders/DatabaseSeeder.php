@@ -17,27 +17,21 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'Hizkia Reppi',
-            'username' => 'hizkiareppi',
-            'email' => 'hizkiareppi@gmail.com',
-            'password' => bcrypt('hizkia123'),
+            'name' => 'Super Admin',
+            'username' => 'superadmin',
+            'email' => 'superadmin@gmail.com',
+            'password' => bcrypt('superadmin123'),
             'role' => 'super-admin'
         ]);
         User::factory()->create([
-            'name' => 'Jefren Reppi',
-            'username' => 'jefrenreppi',
-            'email' => 'jefrenreppi@gmail.com',
-            'password' => bcrypt('jefren123'),
+            'name' => 'Admin',
+            'username' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin123'),
             'role' => 'admin'
         ]);
-        User::factory()->create([
-            'name' => 'Hizkia Jefren',
-            'username' => 'hjefren',
-            'email' => 'hjefren@gmail.com',
-            'password' => bcrypt('hjefren123'),
-            'role' => 'user'
-        ]);
-        Post::factory(10)->create();
+        User::factory(8)->create();
+        Post::factory(50)->create();
         Category::factory()->create([
             'name' => 'Programming',
             'slug' => 'programming'
