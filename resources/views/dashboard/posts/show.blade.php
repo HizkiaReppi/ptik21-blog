@@ -8,13 +8,12 @@
                     <div class="flex flex-wrap justify-between lg:justify-normal">
                         <a href="{{ route('dashboard.posts.index') }}" class="btn-green w-full lg:w-auto">Back To Post
                             Management</a>
-                        @cannot('admin')
+                        @if(auth()->user()->role === 'super-admin')
                             <a href="{{ route('dashboard.posts.edit', $post->slug) }}"
                                 class="btn-yellow w-[45%] lg:w-auto">Edit</a>
                             <a href="{{ route('dashboard.posts.destroy', $post->slug) }}" class="btn-red w-[45%] lg:w-auto"
                                 data-confirm-delete="true">Remove</a>
-                        @endcannot
-                        @if (auth()->user()->id === $post->author->id)
+                        @elseif(auth()->user()->id === $post->author->id)
                             <a href="{{ route('dashboard.posts.edit', $post->slug) }}"
                                 class="btn-yellow w-[45%] lg:w-auto">Edit</a>
                             <a href="{{ route('dashboard.posts.destroy', $post->slug) }}" class="btn-red w-[45%] lg:w-auto"

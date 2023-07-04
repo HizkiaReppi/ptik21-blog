@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\DashboardUserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/dashboard/posts', DashboardPostController::class)->names('dashboard.posts');
     Route::get('/dashboard/categories/check-slug', [DashboardCategoryController::class, 'checkSlug'])->name('dashboard.categories.checkSlug');
     Route::resource('/dashboard/categories', DashboardCategoryController::class)->names('dashboard.categories');
+    Route::resource('/dashboard/users', DashboardUserController::class)->names('dashboard.users');
 });
 
 Route::middleware('auth')->group(function () {

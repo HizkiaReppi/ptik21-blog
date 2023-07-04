@@ -23,6 +23,9 @@
                             <x-nav-link :href="route('dashboard.categories.index')" :active="request()->routeIs('dashboard.categories.*')">
                                 {{ __('Category') }}
                             </x-nav-link>
+                            <x-nav-link :href="route('dashboard.users.index')" :active="request()->routeIs('dashboard.users.*')">
+                                {{ __('User') }}
+                            </x-nav-link>
                         @endcanany
                     </div>
                 @endauth
@@ -103,6 +106,9 @@
                 @canany(['super-admin', 'admin'])
                     <x-responsive-nav-link :href="route('dashboard.categories.index')" :active="request()->routeIs('dashboard.categories.*')">
                         {{ __('Category') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('dashboard.users.index')" :active="request()->routeIs('dashboard.users.*')">
+                        {{ __('User') }}
                     </x-responsive-nav-link>
                 @endcanany
             @endauth

@@ -47,7 +47,7 @@ class DashboardPostController extends Controller
     {
         return view('dashboard.posts.create', [
             'title' => 'Add New Post',
-            'categories' => Category::all()->orderBy('name', 'ASC'),
+            'categories' => Category::all()->sortBy('name'),
         ]);
     }
 
@@ -100,7 +100,7 @@ class DashboardPostController extends Controller
         return view('dashboard.posts.edit', [
             'title' => 'Edit Post',
             'post' => $post,
-            'categories' => Category::all()->orderBy('name', 'ASC'),
+            'categories' => Category::all()->sortBy('name'),
         ]);
     }
 
