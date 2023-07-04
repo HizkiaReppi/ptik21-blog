@@ -12,7 +12,7 @@
       <div
         class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
       >
-      <a href="/dashboard/posts/create" class="btn-primary">Add Posts</a>
+      <a href="{{ route('dashboard.posts.create') }}" class="btn-primary">Add Posts</a>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
