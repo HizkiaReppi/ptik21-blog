@@ -87,7 +87,7 @@ class DashboardPostController extends Controller
         $text = "You won't be able to revert this!";
         confirmDelete($title, $text);
         return view('dashboard.posts.show', [
-            'title' => 'Add New Post',
+            'title' => $post->name,
             'post' => $post,
         ]);
     }

@@ -1,4 +1,4 @@
-<x-post-layout>
+<x-post-layout title="{{ $title }}">
     <div class="mx-[3%] my-5">
         <div class="flex justify-between gap-5">
             <div class="w-full bg-white rounded-lg px-16 py-10">
@@ -8,16 +8,16 @@
                     <div class="flex flex-wrap justify-between lg:justify-normal">
                         <a href="{{ route('dashboard.posts.index') }}" class="btn-green w-full lg:w-auto">Back To Post
                             Management</a>
-                        @if(auth()->user()->role === 'super-admin')
+                        @if (auth()->user()->role === 'super-admin')
                             <a href="{{ route('dashboard.posts.edit', $post->slug) }}"
                                 class="btn-yellow w-[45%] lg:w-auto">Edit</a>
-                            <a href="{{ route('dashboard.posts.destroy', $post->slug) }}" class="btn-red w-[45%] lg:w-auto"
-                                data-confirm-delete="true">Remove</a>
+                            <a href="{{ route('dashboard.posts.destroy', $post->slug) }}"
+                                class="btn-red w-[45%] lg:w-auto" data-confirm-delete="true">Remove</a>
                         @elseif(auth()->user()->id === $post->author->id)
                             <a href="{{ route('dashboard.posts.edit', $post->slug) }}"
                                 class="btn-yellow w-[45%] lg:w-auto">Edit</a>
-                            <a href="{{ route('dashboard.posts.destroy', $post->slug) }}" class="btn-red w-[45%] lg:w-auto"
-                                data-confirm-delete="true">Remove</a>
+                            <a href="{{ route('dashboard.posts.destroy', $post->slug) }}"
+                                class="btn-red w-[45%] lg:w-auto" data-confirm-delete="true">Remove</a>
                         @endif
                     </div>
                     <p>
