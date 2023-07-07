@@ -22,14 +22,14 @@
                             <div>
                                 <x-input-label for="name" :value="__('Name')" />
                                 <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
-                                    :value="old('name')" autofocus autocomplete="name" />
+                                    :value="old('name')" autofocus autocomplete="name" required />
                                 <x-input-error class="mt-2" :messages="$errors->get('name')" />
                             </div>
 
                             <div>
                                 <x-input-label for="slug" :value="__('Slug')" />
                                 <x-text-input id="slug" name="slug" type="text" class="mt-1 block w-full"
-                                    :value="old('slug')" autocomplete="slug" />
+                                    :value="old('slug')" autocomplete="slug" required />
                                 <x-input-error class="mt-2" :messages="$errors->get('slug')" />
                             </div>
 

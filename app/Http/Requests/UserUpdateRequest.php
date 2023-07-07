@@ -24,13 +24,13 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z\s]+$/'],
             'role' => ['required'],
             'confirmAdminPassword' => ['required_if:role,super-admin'],
         ];
 
         if ($this->username !== $this->user->username) {
-            $rules['username'] = ['required', 'string', 'max:255', 'unique:' . User::class];
+            $rules['username'] = ['required', 'string', 'max:255', 'alpha_num:ascii', 'unique:' . User::class];
         }
 
         if ($this->password) {
@@ -38,9 +38,16 @@ class UserUpdateRequest extends FormRequest
         }
 
         if ($this->email !== $this->user->email) {
-            $rules['email'] = ['required', 'string', 'email', 'max:255', 'unique:' . User::class];
+            $rules['email'] = ['required', 'string', 'email:dns', 'max:255', 'unique:' . User::class];
         }
 
         return $rules;
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.regex' => 'The :attribute field may only contain letters.',
+        ];
     }
 }

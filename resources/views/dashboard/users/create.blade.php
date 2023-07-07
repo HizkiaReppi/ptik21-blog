@@ -22,14 +22,16 @@
                             <div>
                                 <x-input-label for="name" :value="__('Full Name')" />
                                 <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
-                                    :value="old('name')" autofocus required />
+                                    :value="old('name')" pattern="[A-Za-z\s]+"
+                                    title="The fullname field may only contain letters." autofocus required />
                                 <x-input-error class="mt-2" :messages="$errors->get('name')" />
                             </div>
 
                             <div>
                                 <x-input-label for="username" :value="__('Username')" />
                                 <x-text-input id="username" name="username" type="text" class="mt-1 block w-full"
-                                    :value="old('username')" autocomplete="username" required />
+                                    :value="old('username')" autocomplete="username" pattern="[A-Za-z0-9]+"
+                                    title="The username field may only contain letters and numbers." required />
                                 <x-input-error class="mt-2" :messages="$errors->get('username')" />
                             </div>
 
@@ -43,14 +45,14 @@
                             <div>
                                 <x-input-label for="password" :value="__('Password')" />
                                 <x-text-input id="password" name="password" type="password" class="mt-1 block w-full"
-                                    required />
+                                    minlength="8" required />
                                 <x-input-error class="mt-2" :messages="$errors->get('password')" />
                             </div>
 
                             <div>
                                 <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
                                 <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                                    name="password_confirmation" required />
+                                    name="password_confirmation" minlength="8" required />
                                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                             </div>
 

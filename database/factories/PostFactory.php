@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +21,7 @@ class PostFactory extends Factory
             'user_id' => mt_rand(1, 10),
             'category_id' => mt_rand(1, 5),
             'slug' => fake()->slug(),
-            'published_at' => Carbon::now('Asia/Jakarta'),
+            'published_at' => now(),
             'content' => collect(fake()->paragraphs(mt_rand(20, 30)))
                 ->map(fn ($p) => "<p>$p</p>")
                 ->implode('')

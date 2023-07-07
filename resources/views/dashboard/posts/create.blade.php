@@ -27,20 +27,20 @@
                             <div>
                                 <x-input-label for="title" :value="__('Title')" />
                                 <x-text-input id="title" name="title" type="text" class="mt-1 block w-full"
-                                    :value="old('title')" autofocus autocomplete="title" />
+                                    :value="old('title')" autofocus autocomplete="title" required />
                                 <x-input-error class="mt-2" :messages="$errors->get('title')" />
                             </div>
 
                             <div>
                                 <x-input-label for="slug" :value="__('Slug')" />
                                 <x-text-input id="slug" name="slug" type="text" class="mt-1 block w-full"
-                                    :value="old('slug')" autocomplete="slug" />
+                                    :value="old('slug')" autocomplete="slug" required />
                                 <x-input-error class="mt-2" :messages="$errors->get('slug')" />
                             </div>
 
                             <div>
                                 <x-input-label for="category_id" :value="__('Category')" />
-                                <x-select :options="$categories" id="category_id" name="category_id" />
+                                <x-select :options="$categories" id="category_id" name="category_id" required />
                                 <x-input-error class="mt-2" :messages="$errors->get('category_id')" />
                             </div>
 
@@ -53,7 +53,8 @@
 
                             <div>
                                 <x-input-label for="content" :value="__('Content')" />
-                                <input id="content" type="hidden" name="content" value="{{ old('content') }}">
+                                <input id="content" type="hidden" name="content" value="{{ old('content') }}"
+                                    required>
                                 <trix-editor input="content"></trix-editor>
                                 <x-input-error class="mt-2" :messages="$errors->get('content')" />
                             </div>

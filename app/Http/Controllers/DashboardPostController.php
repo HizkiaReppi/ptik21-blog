@@ -58,7 +58,7 @@ class DashboardPostController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['published_at'] = Carbon::now('Asia/Jakarta');
+        $validatedData['published_at'] = now();
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
