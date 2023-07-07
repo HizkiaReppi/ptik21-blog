@@ -1,4 +1,20 @@
-<x-post-layout title="{{ $title }}">
+<x-post-layout title="Menemukan Pengetahuan Baru di Dunia IT dan Teknologi">
+    <x-slot name="meta_tags">
+        <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+        <meta name="description"
+            content="Selamat datang di PTIK-Blog, tempat di mana Anda dapat menemukan artikel menarik seputar teknologi informasi, pemrograman, keamanan jaringan, dan banyak lagi. Segera temukan pengetahuan baru dan inspirasi di PTIK-Blog yang didedikasikan untuk para penggemar IT." />
+        <link rel="canonical" href="{{ Request::root() }}" />
+        <meta property="og:locale" content="id_ID" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="PTIKBlog - Menemukan Pengetahuan Baru di Dunia IT dan Teknologi" />
+        <meta property="og:description"
+            content="Segera temukan pengetahuan baru dan inspirasi di PTIK-Blog yang didedikasikan untuk para penggemar IT." />
+        <meta property="og:url" content="{{ Request::root() }}" />
+        <meta property="og:site_name" content="PTIKBlog" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@ptikunima" />
+    </x-slot>
+
     <h2 class="text-center font-bold text-2xl my-5">Posts</h2>
 
     <div class="flex justify-center">

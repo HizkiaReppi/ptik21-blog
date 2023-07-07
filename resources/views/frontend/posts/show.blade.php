@@ -1,4 +1,27 @@
 <x-post-layout title="{{ $title }}">
+    <x-slot name="meta_tags">
+        <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+        <meta name="title" content="{{ Str::ucfirst($post->title) }}">
+        <meta name="description" content="{{ strip_tags(Str::ucfirst(Str::words($post->content, 120))) }}" />
+        <meta name="author" content="{{ $post->author->username }}">
+        <meta name="keywords" content="{{ $post->category->name }}">
+        <link rel="canonical" href="{{ Request::root() }}" />
+        <meta property="og:locale" content="id_ID" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="{{ Str::ucfirst($post->title) }}" />
+        <meta property="og:description" content="{{ strip_tags(Str::ucfirst(Str::words($post->content, 120))) }}" />
+        <meta property="og:url" content="{{ Request::url() }}" />
+        <meta property="og:site_name" content="{{ config('app.name') }}" />
+        <meta property="og:image" content="{{ asset('storage/post-image/' . $post->image) }}" />
+        <meta property="article:published_time" content="{{ $post->created_at }}" />
+        <meta property="article:modified_time" content="{{ $post->updated_at }}" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="{{ Str::ucfirst($post->title) }}" />
+        <meta name="twitter:description" content="{{ strip_tags(Str::ucfirst(Str::words($post->content, 120))) }}" />
+        <meta name="twitter:image" content="{{ asset('storage/post-image/' . $post->image) }}" />
+        <meta name="twitter:site" content="@ptikunima" />
+    </x-slot>
+
     <div class="mx-[3%] my-5">
         <div class="flex flex-col-reverse lg:flex-row justify-between gap-5">
             <div class="h-full w-full lg:w-3/12 bg-white rounded-lg px-8 py-6">
