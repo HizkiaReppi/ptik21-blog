@@ -83,6 +83,7 @@ class DashboardPostController extends Controller
      */
     public function show(Post $post): View
     {
+        $post->increment('views');
         $title = 'Are you sure?';
         $text = "You won't be able to revert this!";
         confirmDelete($title, $text);

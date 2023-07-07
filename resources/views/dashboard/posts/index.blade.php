@@ -17,6 +17,7 @@
                                 <th scope="col" class="px-6 py-3 text-center">Title</th>
                                 <th scope="col" class="px-6 py-3 text-center">Category</th>
                                 <th scope="col" class="px-6 py-3 text-center">Published</th>
+                                <th scope="col" class="px-6 py-3 text-center">Total Views</th>
                                 <th scope="col" class="px-6 py-3 text-center">Action</th>
                             </tr>
                         </thead>
@@ -35,6 +36,8 @@
                                     </td>
                                     <td class="px-6 py-4 text-center">
                                         {{ Carbon\Carbon::parse($post->published_at)->format('H:i, d F Y') }}</td>
+                                    <td class="px-6 py-4 text-center">
+                                        {{ $post->views }}</td>
                                     <td class="flex items-center justify-center px-6 py-4 space-x-3">
                                         <a href="{{ route('dashboard.posts.show', $post->slug) }}"
                                             class="font-medium text-green-600 dark:text-green-500 hover:underline">

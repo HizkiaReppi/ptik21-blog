@@ -21,7 +21,8 @@
                         @endif
                     </div>
                     <p>
-                        In {{ $post->category->name }} | {{ $post->created_at->diffForHumans() }}
+                        In {{ $post->category->name }} | {{ $post->views }} Views |
+                        {{ $post->created_at->diffForHumans() }}
                     </p>
                 </div>
 
