@@ -13,12 +13,12 @@ class PostController extends Controller
     {
         $title = '';
 
-        if(request('category')) {
+        if (request('category')) {
             $category = Category::firstWhere('slug', request('category'));
             $title = ' in ' . $category->name;
         }
 
-        if(request('author')) {
+        if (request('author')) {
             $author = User::firstWhere('username', request('author'));
             $title = ' by ' . $author->name;
         }
@@ -31,6 +31,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        $post->increment('views');
         return view('frontend.posts.show', [
             'title' => $post->title,
             'post' => $post,

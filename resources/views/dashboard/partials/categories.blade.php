@@ -21,7 +21,7 @@
                                 {{ $category->name }}
                             </th>
                             <td class="px-6 py-4 text-center">
-                                {{ $posts->where('category_id', $category->id)->count() }}
+                                {{ $totalPosts->where('category_id', $category->id)->count() }}
                             </td>
                         </tr>
                     @endforeach

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->dateTime('published_at')->nullable();
             $table->string('image')->nullable();
             $table->text('content');
+            $table->unsignedBigInteger('views')->default(0);
             $table->timestamps();
         });
     }

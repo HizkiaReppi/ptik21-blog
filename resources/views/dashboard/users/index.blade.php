@@ -20,6 +20,7 @@
                                 <th scope="col" class="px-6 py-3 text-center">Username</th>
                                 <th scope="col" class="px-6 py-3 text-center">Email</th>
                                 <th scope="col" class="px-6 py-3 text-center">Status</th>
+                                <th scope="col" class="px-6 py-3 text-center">Last Seen</th>
                                 <th scope="col" class="px-6 py-3 text-center">Total Posts</th>
                                 <th scope="col" class="px-6 py-3 text-center">Action</th>
                             </tr>
@@ -42,7 +43,20 @@
                                         {{ $user->email }}
                                     </td>
                                     <td class="px-6 py-4 text-center">
-                                        {{ $user->hasVerifiedEmail() ? 'Verified' : 'Not Verified' }}
+                                        @if ($user->hasVerifiedEmail())
+                                            <span class="text-green-500">Verified</span>
+                                        @else
+                                            <span class="text-red-500">Not Verified</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        @if ($user->isOnline())
+                                            <span class="text-green-500">Online</span>
+                                        @else
+                                            <span class="text-gray-700">
+                                                {{ $user->lastActivityAgo() }}
+                                            </span>
+                                        @endif
                                     </td>
                                     <td class="px-6 py-4 text-center">
                                         {{ $posts->where('user_id', $user->id)->count() }}

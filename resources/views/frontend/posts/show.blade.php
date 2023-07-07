@@ -42,7 +42,7 @@
                 <h1 class="text-4xl font-bold mb-1.5">{{ $post->title }}</h1>
 
                 <div class="flex justify-between text-base font-medium text-gray-700 mb-3">
-                    <p>By. {{ $post->author->name }} | {{ $post->category->name }}</p>
+                    <p>By. {{ $post->author->name }} | {{ $post->category->name }} | {{ $post->views }} Views</p>
                     {{ $post->created_at->diffForHumans() }}
                 </div>
 

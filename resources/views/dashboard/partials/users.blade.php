@@ -7,6 +7,7 @@
                     <tr>
                         <th scope="col" class="px-6 py-3 text-center">No.</th>
                         <th scope="col" class="px-6 py-3 text-center">Name</th>
+                        <th scope="col" class="px-6 py-3 text-center">Status</th>
                         <th scope="col" class="px-6 py-3 text-center">Total Posts</th>
                     </tr>
                 </thead>
@@ -21,7 +22,14 @@
                                 {{ $user->name }}
                             </th>
                             <td class="px-6 py-4 text-center">
-                                {{ $posts->where('user_id', $user->id)->count() }}
+                                @if ($user->isOnline())
+                                    <span class="text-green-500">Online</span>
+                                @else
+                                    <span class="text-red-500">Offline</span>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                {{ $totalPosts->where('user_id', $user->id)->count() }}
                             </td>
                         </tr>
                     @endforeach

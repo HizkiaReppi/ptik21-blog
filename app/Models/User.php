@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -62,5 +63,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isAuthenticated(): Bool
     {
         return auth()->check();
+    }
+
+    public function isOnline(): Bool
+    {
+        return $this->last_activity >= now()->subMinutes();
+    }
+
+    public function lastActivityAgo(): String
+    {
+        return $this->last_activity !== null ? Carbon::parse($this->last_activity)->diffForHumans() : 'Never';
     }
 }

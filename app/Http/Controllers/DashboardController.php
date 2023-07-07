@@ -18,6 +18,7 @@ class DashboardController extends Controller
         return view('dashboard.index', [
             'title' => 'Dashboard',
             'posts' => Post::paginate(10),
+            'totalPosts' => Post::all(),
             'categories' => Category::orderBy('name', 'ASC')->paginate(10),
             'users' => User::orderBy('name', 'ASC')->paginate(10),
         ]);
